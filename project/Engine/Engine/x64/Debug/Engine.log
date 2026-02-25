@@ -1,0 +1,4 @@
+﻿  EasyEngine.cpp
+  LINK : C:\Users\welkl\Desktop\engine\project\Engine\x64\Debug\Engine.dll wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
+     Bibliothek "C:\Users\welkl\Desktop\engine\project\Engine\x64\Debug\Engine.lib" und Objekt "C:\Users\welkl\Desktop\engine\project\Engine\x64\Debug\Engine.exp" werden erstellt.
+  Engine.vcxproj -> C:\Users\welkl\Desktop\engine\project\Engine\x64\Debug\Engine.dll

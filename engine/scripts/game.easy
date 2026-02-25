@@ -1,0 +1,87 @@
+// Einfaches Spiel in EasyScript
+// Leicht verständliche Unity-ähnliche Syntax
+
+var spielerName = "Held"
+var leben = 100
+var geschwindigkeit = 5.0
+
+// Eine einfache Klasse für den Spieler
+klasse Spieler {
+    init(name) {
+        this.name = name
+        this.leben = 100
+        this.position = {, y: 0}
+   x: 0 }
+    
+    bewegen(x, y) {
+        this.position.x = this.position.x + x * geschwindigkeit * zeit.delta
+        this.position.y = this.position.y + y * geschwindigkeit * zeit.delta
+    }
+    
+    schaden(amount) {
+        this.leben = this.leben - amount
+        drucke(this.name + " hat noch " + this.leben + " Leben!")
+        
+        wenn this.leben <= 0 {
+            drucke("Spiel vorbei!")
+        }
+    }
+}
+
+// Globale Variablen
+var spieler = nichts
+var gegner = []
+
+// Wird einmal beim Start aufgerufen
+start() {
+    drucke("Spiel startet!")
+    spieler = Spieler.neu(spielerName)
+    
+    // Einen Gegner erstellen
+    var neuerGegner = {
+        name: "Goblin",
+        leben: 50,
+        position: {x: 10, y: 5}
+    }
+    gegner.hinzufuegen(neuerGegner)
+}
+
+// Wird jeden Frame aufgerufen
+update(dt) {
+    var x = 0
+    var y = 0
+    
+    // Steuerung
+    wenn eingabe.istGedrueckt("W") oder eingabe.istGedrueckt("PfeilOben") {
+        y = 1
+    }
+    wenn eingabe.istGedrueckt("S") oder eingabe.istGedrueckt("PfeilUnten") {
+        y = -1
+    }
+    wenn eingabe.istGedrueckt("A") oder eingabe.istGedrueckt("PfeilLinks") {
+        x = -1
+    }
+    wenn eingabe.istGedrueckt("D") oder eingabe.istGedrueckt("PfeilRechts") {
+        x = 1
+    }
+    
+    // Spieler bewegen
+    wenn x != 0 oder y != 0 {
+        spieler.bewegen(x, y)
+    }
+    
+    // Beispiel: Schaden bei Kollision mit Gegner
+    fuer var i = 0 bis gegner.laenge() {
+        var g = gegner[i]
+        var dist = mathe.abstand(spieler.position, g.position)
+        
+        wenn dist < 1.5 {
+            drucke("Kollision mit " + g.name + "!")
+        }
+    }
+}
+
+// Wird bei Kollision aufgerufen
+onCollision(other) {
+    drucke("Kollision mit: " + other.name)
+}
